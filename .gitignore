@@ -1,0 +1,32 @@
+.DS_Store
+node_modules/
+dist/
+.build/
+# Serverless directories
+.serverless/
+.webpack
+
+semver.json
+
+# stage env files
+.env*
+!.env.dist
+
+
+*.tsbuildinfo
+
+# Log files
+*.log
+*.old
+*.map
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+tmp

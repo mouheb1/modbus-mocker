@@ -1,0 +1,109 @@
+<!-- roomSelection.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select a Room</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; 
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    .container {
+      width: 300px;
+      margin: 100px auto;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    select, input {
+      width: calc(100% - 24px);
+      padding: 10px 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    select:focus, input:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Select or Create a Room</h2>
+    <!-- Existing rooms dropdown -->
+    <select id="roomSelect">
+      <option value="">-- Select an existing room --</option>
+    </select>
+
+    <!-- OR create a new one -->
+    <input type="text" id="newRoom" placeholder="Enter new room name..." />
+
+    <button id="joinBtn">Join</button>
+  </div>
+
+  <script>
+    // On page load, fetch the list of rooms from the server
+    fetch('/rooms')
+      .then((response) => response.json())
+      .then((data) => {
+        const roomSelect = document.getElementById('roomSelect');
+        data.rooms.forEach((roomName) => {
+          const option = document.createElement('option');
+          option.value = roomName;
+          option.textContent = roomName;
+          roomSelect.appendChild(option);
+        });
+      })
+      .catch((err) => console.error('Error fetching rooms:', err));
+
+    const joinBtn = document.getElementById('joinBtn');
+    joinBtn.addEventListener('click', () => {
+      const selectEl = document.getElementById('roomSelect');
+      const newRoomEl = document.getElementById('newRoom');
+
+      let chosenRoom = selectEl.value.trim();
+      const newRoom = newRoomEl.value.trim();
+
+      // If user typed a new room, that takes priority
+      if (newRoom) {
+        chosenRoom = newRoom;
+      }
+
+      if (!chosenRoom) {
+        alert('Please select or enter a room name.');
+        return;
+      }
+
+      // Redirect to index.html with the chosen room
+      window.location.href = `index.html?room=${encodeURIComponent(chosenRoom)}`;
+    });
+  </script>
+</body>
+</html>

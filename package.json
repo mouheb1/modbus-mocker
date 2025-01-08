@@ -1,0 +1,21 @@
+{
+  "name": "modbus-simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "modbus": "nodemon ./modbus-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "http": "^0.0.1-security",
+    "modbus-serial": "^8.0.17",
+    "nodemon": "^3.1.9",
+    "path": "^0.12.7",
+    "socket.io": "^4.8.1"
+  }
+}
