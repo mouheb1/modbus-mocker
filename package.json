@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./server.js",
-    "modbus": "nodemon ./modbus-server.js"
+    "start": "npm run build && node dist/server.js",
+    "build": "tsc",
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,11 @@
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
-    "serialport": "^13.0.0"
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.5",
+    "@types/socket.io": "^3.0.2",
+    "serialport": "^13.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   }
 }
