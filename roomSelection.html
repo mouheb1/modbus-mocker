@@ -71,17 +71,17 @@
   <script>
     // On page load, fetch the list of rooms from the server
     fetch('/rooms')
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         const roomSelect = document.getElementById('roomSelect');
-        data.rooms.forEach((roomName) => {
+        data.rooms.forEach(roomName => {
           const option = document.createElement('option');
           option.value = roomName;
           option.textContent = roomName;
           roomSelect.appendChild(option);
         });
       })
-      .catch((err) => console.error('Error fetching rooms:', err));
+      .catch(err => console.error('Error fetching rooms:', err));
 
     const joinBtn = document.getElementById('joinBtn');
     joinBtn.addEventListener('click', () => {

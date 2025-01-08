@@ -13,13 +13,11 @@
       padding: 0;
       background-color: #f4f4f9;
     }
-
     h1 {
       text-align: center;
       margin-top: 20px;
       color: #333;
     }
-
     #registers {
       margin: 20px auto;
       padding: 10px;
@@ -29,7 +27,6 @@
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-
     #notifications {
       position: fixed;
       top: 20px;
@@ -37,7 +34,6 @@
       width: 300px;
       z-index: 1000;
     }
-
     #notifications div {
       color: white;
       padding: 10px;
@@ -46,15 +42,12 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       animation: fadeIn 0.5s, fadeOut 5s 5s forwards;
     }
-
     #notifications .connect {
       background-color: #4caf50; /* Green for connect */
     }
-
     #notifications .disconnect {
       background-color: #f44336; /* Red for disconnect */
     }
-
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -65,14 +58,12 @@
         transform: translateY(0);
       }
     }
-
     @keyframes fadeOut {
       to {
         opacity: 0;
         transform: translateY(-20px);
       }
     }
-
     #writeForm {
       margin: 20px auto;
       padding: 20px;
@@ -82,12 +73,10 @@
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-
     #writeForm label {
       margin-right: 10px;
       font-weight: bold;
     }
-
     #writeForm input {
       margin-right: 10px;
       padding: 5px;
@@ -95,7 +84,6 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-
     #writeForm button {
       padding: 10px 15px;
       font-size: 16px;
@@ -105,7 +93,6 @@
       border-radius: 4px;
       cursor: pointer;
     }
-
     #writeForm button:hover {
       background-color: #0056b3;
     }
@@ -149,16 +136,16 @@
     });
 
     // Update displayed registers
-    const updateRegisters = (data) => {
+    function updateRegisters(data) {
       const registersDiv = document.getElementById('registers');
       registersDiv.innerHTML = `
         <h2>Holding Registers - Room: <em>${roomName}</em></h2>
         <pre>${JSON.stringify(data, null, 2)}</pre>
       `;
-    };
+    }
 
     // Display a notification
-    const displayNotification = (message, type) => {
+    function displayNotification(message, type) {
       const notificationsDiv = document.getElementById('notifications');
       const notification = document.createElement('div');
       notification.textContent = message;
@@ -168,14 +155,13 @@
       } else if (type === 'disconnect') {
         notification.classList.add('disconnect');
       }
-
       notificationsDiv.appendChild(notification);
 
       // Remove notification after 5 seconds
       setTimeout(() => {
         notification.remove();
       }, 5000);
-    };
+    }
 
     // Listen for holdingRegisters updates (for our room)
     socket.on('holdingRegistersUpdate', (data) => {
@@ -199,8 +185,8 @@
     const writeForm = document.getElementById('writeForm');
     writeForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      const address = parseInt(document.getElementById('address').value);
-      const value = parseInt(document.getElementById('value').value);
+      const address = parseInt(document.getElementById('address').value, 10);
+      const value = parseInt(document.getElementById('value').value, 10);
 
       // Emit the write request with the room info
       socket.emit('write', { address, value, roomName });
