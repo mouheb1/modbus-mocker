@@ -1,11 +1,12 @@
 import express from "express";
 import path from "path";
+import http, { Server as HTTPServer } from "http";
 
 import getIPAddress from "./helpers/getIPAddress";
 import { createModbusServer } from "./modbusServer";
-import { server } from "./socket-io";
 
 export const app = express();
+export const server: HTTPServer = http.createServer(app);
 
 const HTTP_PORT = 5000;    // HTTP + Socket.IO
 export const MODBUS_PORT = 502;   // Modbus TCP

@@ -1,11 +1,6 @@
-
-
-import http, { Server as HTTPServer } from "http";
-
 import { Server as SocketIOServer, Socket } from "socket.io";
-import { app, getOrInitRegisters, roomUnitMap } from "./server";
+import { app, getOrInitRegisters, roomUnitMap, server } from "./server";
 
-export const server: HTTPServer = http.createServer(app);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Create HTTP server + Socket.IO
