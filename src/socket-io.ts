@@ -1,5 +1,6 @@
-import { Server as SocketIOServer, Socket } from "socket.io";
-import { app, getOrInitRegisters, roomUnitMap, server } from "./server";
+// socker-io.ts
+import { Socket } from "socket.io";
+import { getOrInitRegisters, io, roomUnitMap } from "./server";
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -7,12 +8,6 @@ import { app, getOrInitRegisters, roomUnitMap, server } from "./server";
 ////////////////////////////////////////////////////////////////////////////////
 
 let nextUnitID = 1;
-export const io: SocketIOServer = new SocketIOServer(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
 
 io.on("connection", (socket: Socket) => {
   console.log("New client connected:", socket.id);

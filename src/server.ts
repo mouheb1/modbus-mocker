@@ -1,12 +1,24 @@
+//server.ts
 import express from "express";
 import path from "path";
 import http, { Server as HTTPServer } from "http";
+import { Server as SocketIOServer } from "socket.io";
 
 import getIPAddress from "./helpers/getIPAddress";
 import { createModbusServer } from "./modbusServer";
 
+
 export const app = express();
 export const server: HTTPServer = http.createServer(app);
+
+export const io: SocketIOServer = new SocketIOServer(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+
+import "./socket-io";
 
 const HTTP_PORT = 5000;    // HTTP + Socket.IO
 export const MODBUS_PORT = 502;   // Modbus TCP

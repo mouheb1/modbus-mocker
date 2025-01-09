@@ -1,7 +1,7 @@
+// modbusServer.ts
 import ModbusRTU from "modbus-serial";
 
-import { getOrInitRegisters, MODBUS_PORT, roomUnitMap } from "./server";
-import { io } from "./socket-io";
+import { getOrInitRegisters, io, MODBUS_PORT, roomUnitMap } from "./server";
 
 ////////////////////////////////////////////////////////////////////////////////
 // Create Modbus TCP server (via modbus-serial)
