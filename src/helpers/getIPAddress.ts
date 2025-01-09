@@ -17,7 +17,7 @@ export default function getIPAddress(callback: (ip: string | null) => void): voi
     }
 
     // Replace with your actual interface name
-    const interfaceName = "wlx1cbfcedf49c2";
+    const interfaceName = "wlp67s0";
     const interfaceRegex = new RegExp(`${interfaceName}.*?inet (\\d+\\.\\d+\\.\\d+\\.\\d+)`, "s");
 
     const match = stdout.match(interfaceRegex);
